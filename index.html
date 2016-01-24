@@ -1,1 +1,45 @@
-Hello World!
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src='js/jquery.knob.min.js'></script>
+</head>
+<body>
+<input type="text" value="75" class="dial"/>
+<script type='text/javascript'>
+
+$(function() {
+    $(".dial").knob();
+    alert('this worked');
+});
+// Check for the various File API support.
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+          // Great success! All the File APIs are supported.
+} else {
+          alert('The File APIs are not fully supported in this browser.');
+}
+var context;
+window.addEventListener('load', init, false);
+function init()
+{
+    try 
+    {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        context = new AudioContext();
+    }
+    catch(e)
+    {
+        alert('Web Audio Context not supported by this browser");
+    }
+}
+
+function playSound(buffer)
+{
+     var source = context.createBufferSource();
+     source.buffer = buffer;
+     source.connect(context.destination);
+     source.start(0);
+}
+</script>
+Some face
+</body>
+</html>
